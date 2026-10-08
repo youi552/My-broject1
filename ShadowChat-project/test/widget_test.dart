@@ -19,35 +19,12 @@ Future<void> _openJourneyToFinalDay(WidgetTester tester) async {
   expect(find.text('OPEN THE DOOR'), findsOneWidget);
   expect(find.text('الرجوع'), findsOneWidget);
   expect(find.text('GO BACK'), findsOneWidget);
-  expect(find.byKey(const ValueKey('shadow-door-closed')), findsOneWidget);
-  expect(find.byKey(const ValueKey('shadow-left-door-leaf')), findsOneWidget);
-  expect(find.byKey(const ValueKey('shadow-right-door-leaf')), findsOneWidget);
+  expect(find.byKey(const ValueKey('shadow-door-frame')), findsOneWidget);
+  expect(find.byKey(const ValueKey('shadow-door-image-left')), findsNothing);
+  expect(find.byKey(const ValueKey('shadow-door-image-right')), findsNothing);
   expect(find.byKey(const ValueKey('shadow-chat-input')), findsNothing);
-  final closedFrameRect = tester.getRect(
-    find.byKey(const ValueKey('shadow-door-closed')),
-  );
 
   await tester.tap(find.byKey(const ValueKey('open-door')));
-  await tester.pump();
-  expect(find.byKey(const ValueKey('shadow-door-open')), findsOneWidget);
-  expect(find.byKey(const ValueKey('shadow-left-door-leaf')), findsOneWidget);
-  expect(find.byKey(const ValueKey('shadow-right-door-leaf')), findsOneWidget);
-  await tester.pump(const Duration(milliseconds: 850));
-  expect(
-    tester.getRect(find.byKey(const ValueKey('shadow-door-open'))),
-    closedFrameRect,
-  );
-  final leftLeafTransform = tester
-      .widget<Transform>(find.byKey(const ValueKey('shadow-left-door-leaf')))
-      .transform;
-  final rightLeafTransform = tester
-      .widget<Transform>(find.byKey(const ValueKey('shadow-right-door-leaf')))
-      .transform;
-  expect(leftLeafTransform[2], greaterThan(0));
-  expect(rightLeafTransform[2], lessThan(0));
-
-  await tester.pump(const Duration(milliseconds: 400));
-  await tester.pump(const Duration(milliseconds: 1200));
   await tester.pumpAndSettle();
   expect(find.text('اليوم الأول • المرحلة الأولى'), findsOneWidget);
   expect(find.byKey(const ValueKey('shadow-chat-input')), findsOneWidget);
@@ -89,9 +66,20 @@ void main() {
   test(
     'Firebase web config falls back to demo mode when placeholder is used',
     () {
-      expect(hasUsableFirebaseWebConfig('REPLACE_WITH_WEB_API_KEY'), isFalse);
-      expect(hasUsableFirebaseWebConfig('abc123validkey'), isTrue);
-      expect(hasUsableFirebaseWebConfig(''), isFalse);
+      const webAppId = '1:525641785110:web:abcdef123456';
+      expect(
+        hasUsableFirebaseWebConfig('REPLACE_WITH_WEB_API_KEY', webAppId),
+        isFalse,
+      );
+      expect(hasUsableFirebaseWebConfig('abc123validkey', webAppId), isTrue);
+      expect(hasUsableFirebaseWebConfig('', webAppId), isFalse);
+      expect(
+        hasUsableFirebaseWebConfig(
+          'abc123validkey',
+          '1:525641785110:android:abcdef123456',
+        ),
+        isFalse,
+      );
     },
   );
 
@@ -187,7 +175,7 @@ void main() {
 
     await tester.pumpWidget(const MaterialApp(home: ShadowChatScreen()));
     final doorSize = tester.getSize(
-      find.byKey(const ValueKey('shadow-door-closed')),
+      find.byKey(const ValueKey('shadow-door-frame')),
     );
 
     expect(doorSize.width, 390);
@@ -196,26 +184,12 @@ void main() {
       find.byKey(const ValueKey('shadow-door-black-background')),
       findsOneWidget,
     );
-    expect(find.byKey(const ValueKey('shadow-left-door-leaf')), findsOneWidget);
-    expect(
-      find.byKey(const ValueKey('shadow-right-door-leaf')),
-      findsOneWidget,
-    );
-    expect(
-      tester
-          .widget<Image>(find.byKey(const ValueKey('shadow-door-image-left')))
-          .fit,
-      BoxFit.cover,
-    );
-    expect(
-      tester
-          .widget<Image>(find.byKey(const ValueKey('shadow-door-image-right')))
-          .fit,
-      BoxFit.cover,
-    );
+    expect(find.byKey(const ValueKey('shadow-door-frame')), findsOneWidget);
+    expect(find.byKey(const ValueKey('shadow-door-image-left')), findsNothing);
+    expect(find.byKey(const ValueKey('shadow-door-image-right')), findsNothing);
   });
 
-  testWidgets('door frame stays still while only the leaves rotate', (
+  testWidgets('door frame stays visible without a static door image', (
     WidgetTester tester,
   ) async {
     await tester.pumpWidget(const MaterialApp(home: ShadowChatScreen()));
@@ -223,43 +197,21 @@ void main() {
     final closedFrameRect = tester.getRect(
       find.byKey(const ValueKey('shadow-door-frame')),
     );
-    final frameOverlayStack = tester.widget<Stack>(
-      find
-          .ancestor(
-            of: find.byKey(const ValueKey('shadow-door-frame')),
-            matching: find.byType(Stack),
-          )
-          .first,
-    );
-    expect(
-      frameOverlayStack.children.last.key,
-      const ValueKey('shadow-door-frame'),
-    );
     final frameOverlay = tester.widget<DecoratedBox>(
       find.byKey(const ValueKey('shadow-door-frame')),
     );
+    expect((frameOverlay.decoration as BoxDecoration).border, isNotNull);
     expect(
       (frameOverlay.decoration as BoxDecoration).boxShadow,
       isNull,
     );
-
-    await tester.tap(find.byKey(const ValueKey('open-door')));
-    await tester.pump();
+    expect(find.byKey(const ValueKey('shadow-door-image-left')), findsNothing);
+    expect(find.byKey(const ValueKey('shadow-door-image-right')), findsNothing);
     await tester.pump(const Duration(milliseconds: 850));
-
-    final openFrameRect = tester.getRect(
-      find.byKey(const ValueKey('shadow-door-frame')),
+    expect(
+      tester.getRect(find.byKey(const ValueKey('shadow-door-frame'))),
+      closedFrameRect,
     );
-
-    expect(openFrameRect, closedFrameRect);
-    final leftLeafTransform = tester
-        .widget<Transform>(find.byKey(const ValueKey('shadow-left-door-leaf')))
-        .transform;
-    final rightLeafTransform = tester
-        .widget<Transform>(find.byKey(const ValueKey('shadow-right-door-leaf')))
-        .transform;
-    expect(leftLeafTransform[2], greaterThan(0));
-    expect(rightLeafTransform[2], lessThan(0));
   });
 
   testWidgets('door opens into all stages and the left path ends in doom', (

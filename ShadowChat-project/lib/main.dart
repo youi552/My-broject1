@@ -1423,14 +1423,18 @@ const String firebaseWebApiKey = String.fromEnvironment(
   'FIREBASE_WEB_API_KEY',
   defaultValue: 'REPLACE_WITH_WEB_API_KEY',
 );
+const String firebaseWebAppId = String.fromEnvironment(
+  'FIREBASE_WEB_APP_ID',
+);
 
-bool hasUsableFirebaseWebConfig(String value) {
-  final normalized = value.trim();
-  if (normalized.isEmpty) return false;
-  if (normalized.contains('REPLACE_WITH') || normalized.contains('YOUR_')) {
+bool hasUsableFirebaseWebConfig(String apiKey, String appId) {
+  final normalizedApiKey = apiKey.trim();
+  if (normalizedApiKey.isEmpty) return false;
+  if (normalizedApiKey.contains('REPLACE_WITH') ||
+      normalizedApiKey.contains('YOUR_')) {
     return false;
   }
-  return true;
+  return RegExp(r'^1:\d+:web:[0-9a-fA-F]+$').hasMatch(appId.trim());
 }
 
 Future<void> initializeFirebase() async {
@@ -1448,10 +1452,11 @@ Future<void> initializeFirebase() async {
     return;
   }
 
-  if (kIsWeb && !hasUsableFirebaseWebConfig(firebaseWebApiKey)) {
+  if (kIsWeb &&
+      !hasUsableFirebaseWebConfig(firebaseWebApiKey, firebaseWebAppId)) {
     firebaseReady = false;
     firebaseFailureMessage =
-        'Web Firebase config is missing. App is running in local demo mode.';
+        'Firebase Web config is missing or invalid. Set FIREBASE_WEB_API_KEY and FIREBASE_WEB_APP_ID.';
     return;
   }
 
@@ -1462,7 +1467,7 @@ Future<void> initializeFirebase() async {
           await Firebase.initializeApp(
             options: FirebaseOptions(
               apiKey: firebaseWebApiKey,
-              appId: '1:525641785110:android:acb70e1294c17dec00fa37',
+              appId: firebaseWebAppId,
               messagingSenderId: '525641785110',
               projectId: 'shadow-chat-9edd9',
               authDomain: 'shadow-chat-9edd9.firebaseapp.com',

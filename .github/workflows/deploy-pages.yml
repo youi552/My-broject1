@@ -35,7 +35,18 @@ jobs:
         run: flutter pub get
       - name: Build web app
         working-directory: ShadowChat-project
-        run: flutter build web --release --base-href "/${{ github.event.repository.name }}/"
+        env:
+          FIREBASE_WEB_API_KEY: ${{ vars.FIREBASE_WEB_API_KEY || secrets.FIREBASE_WEB_API_KEY }}
+          FIREBASE_WEB_APP_ID: ${{ vars.FIREBASE_WEB_APP_ID || secrets.FIREBASE_WEB_APP_ID }}
+        run: |
+          if [[ -z "$FIREBASE_WEB_API_KEY" || -z "$FIREBASE_WEB_APP_ID" ]]; then
+            echo "::error::Set FIREBASE_WEB_API_KEY and FIREBASE_WEB_APP_ID in repository Actions variables."
+            exit 1
+          fi
+          flutter build web --release \
+            --base-href "/${{ github.event.repository.name }}/" \
+            --dart-define=FIREBASE_WEB_API_KEY="$FIREBASE_WEB_API_KEY" \
+            --dart-define=FIREBASE_WEB_APP_ID="$FIREBASE_WEB_APP_ID"
       - name: Add nojekyll marker
         run: touch ShadowChat-project/build/web/.nojekyll
       - name: Upload Pages artifact

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +22,7 @@ class ShadowChatScreen extends StatefulWidget {
 }
 
 class _ShadowChatScreenState extends State<ShadowChatScreen>
-    with TickerProviderStateMixin {
+  with TickerProviderStateMixin {
   int currentStage = 1;
   double userBraveryScore = 20.0;
   bool _doorOpened = false;
@@ -35,7 +34,6 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
   final ScrollController _conversationScrollController = ScrollController();
   final List<_ShadowChatMessage> _conversation = [];
   _JourneyEnding? _ending;
-  late final AnimationController _doorAnimationController;
   late final AnimationController _forestAnimationController;
   late final VideoPlayerController _doorVideoController;
   late final Future<void> _doorVideoInitialization;
@@ -43,10 +41,6 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
   @override
   void initState() {
     super.initState();
-    _doorAnimationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 3200),
-    );
     _doorVideoController = VideoPlayerController.asset(
       'assets/videos/VID-20261008-WA3662.mp4',
     );
@@ -73,10 +67,7 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
   }
 
   Future<void> _precacheEntryImages() async {
-    for (final path in const [
-      'assets/images/IMG-20261007-WA0945.jpg',
-      'assets/images/forest_entry.jpg',
-    ]) {
+    for (final path in const ['assets/images/forest_entry.jpg']) {
       if (!mounted) return;
       try {
         await precacheImage(
@@ -91,7 +82,6 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
 
   @override
   void dispose() {
-    _doorAnimationController.dispose();
     _forestAnimationController.dispose();
     unawaited(_doorVideoController.dispose());
     _messageController.dispose();
@@ -177,10 +167,12 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
   Future<void> _openDoor() async {
     if (_doorOpening) return;
     setState(() => _doorOpening = true);
-    await Future.wait<void>([
-      _doorAnimationController.forward(from: 0.0),
-      _playDoorVideo(),
-    ]);
+    await _playDoorVideo();
+    if (!mounted) return;
+    if (_doorVideoController.value.isInitialized) {
+      await _doorVideoController.setLooping(true);
+      await _doorVideoController.play();
+    }
     if (!mounted) return;
     setState(() {
       _doorOpened = true;
@@ -215,6 +207,8 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
 
     _doorVideoController.addListener(completePlayback);
     try {
+      await _doorVideoController.setLooping(false);
+      await _doorVideoController.seekTo(Duration.zero);
       await _doorVideoController.play();
       completePlayback();
       await playbackCompleted.future;
@@ -339,63 +333,6 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
     return _buildJourneyScreen(context);
   }
 
-  Widget _buildDoorLeaf({
-    required bool isLeft,
-    required double progress,
-    required double doorWidth,
-    required double doorHeight,
-    required int imageCacheWidth,
-  }) {
-    final halfWidth = doorWidth / 2;
-    final alignment = isLeft ? Alignment.centerLeft : Alignment.centerRight;
-    final hinge = isLeft ? Alignment.centerLeft : Alignment.centerRight;
-    final rotationDirection = isLeft ? -1.0 : 1.0;
-
-    return Positioned(
-      left: isLeft ? 0 : null,
-      right: isLeft ? null : 0,
-      top: 0,
-      bottom: 0,
-      width: halfWidth,
-      child: Transform(
-        key: ValueKey(
-          isLeft ? 'shadow-left-door-leaf' : 'shadow-right-door-leaf',
-        ),
-        alignment: hinge,
-        transform: Matrix4.identity()
-          ..setEntry(3, 2, 0.0016)
-          ..rotateY(rotationDirection * progress * (math.pi / 2)),
-        child: ClipRRect(
-          borderRadius: BorderRadius.only(
-            topLeft: isLeft ? const Radius.circular(26) : Radius.zero,
-            bottomLeft: isLeft ? const Radius.circular(26) : Radius.zero,
-            topRight: isLeft ? Radius.zero : const Radius.circular(26),
-            bottomRight: isLeft ? Radius.zero : const Radius.circular(26),
-          ),
-          child: ClipRect(
-            child: OverflowBox(
-              alignment: alignment,
-              minWidth: doorWidth,
-              maxWidth: doorWidth,
-              minHeight: doorHeight,
-              maxHeight: doorHeight,
-              child: Image.asset(
-                key: ValueKey(
-                  isLeft ? 'shadow-door-image-left' : 'shadow-door-image-right',
-                ),
-                'assets/images/IMG-20261007-WA0945.jpg',
-                width: doorWidth,
-                height: doorHeight,
-                fit: BoxFit.cover,
-                cacheWidth: imageCacheWidth,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildDoorScreen(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF000000),
@@ -405,8 +342,6 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
           final screenHeight = constraints.maxHeight;
           final doorWidth = screenWidth;
           final doorHeight = screenHeight;
-          final deviceRatio = MediaQuery.devicePixelRatioOf(context);
-          final doorImageWidth = (doorWidth * deviceRatio).round();
 
           return Stack(
             fit: StackFit.expand,
@@ -418,111 +353,32 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
                   color: Color(0xFF000000),
                 ),
               ),
-              if (_doorOpening && _doorVideoController.value.isInitialized)
+              if (_doorOpening)
                 Positioned.fill(
                   child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: SizedBox(
-                      width: _doorVideoController.value.size.width,
-                      height: _doorVideoController.value.size.height,
-                      child: VideoPlayer(_doorVideoController),
-                    ),
+                    fit: BoxFit.contain,
+                    child: _doorVideoController.value.isInitialized
+                        ? SizedBox(
+                            width: _doorVideoController.value.size.width,
+                            height: _doorVideoController.value.size.height,
+                            child: VideoPlayer(_doorVideoController),
+                          )
+                        : const SizedBox.expand(),
                   ),
                 ),
               Center(
                 child: SizedBox(
                   width: doorWidth,
                   height: doorHeight,
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      DecoratedBox(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(28),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.82),
-                              blurRadius: 34,
-                              spreadRadius: 10,
-                              offset: const Offset(0, 18),
-                            ),
-                            BoxShadow(
-                              color: const Color(0xFFB46B2A).withOpacity(0.42),
-                              blurRadius: 80,
-                              spreadRadius: 22,
-                            ),
-                          ],
-                        ),
+                  child: DecoratedBox(
+                    key: const ValueKey('shadow-door-frame'),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(28),
+                      border: Border.all(
+                        color: Colors.white.withOpacity(0.18),
+                        width: 2,
                       ),
-                      AnimatedBuilder(
-                        animation: _doorAnimationController,
-                        builder: (context, child) {
-                          final progress = Curves.easeInOutCubic.transform(
-                            _doorAnimationController.value,
-                          );
-
-                          return SizedBox(
-                            key: ValueKey(
-                              _doorOpening
-                                  ? 'shadow-door-open'
-                                  : 'shadow-door-closed',
-                            ),
-                            width: doorWidth,
-                            height: doorHeight,
-                            child: Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                Positioned.fill(
-                                  child: DecoratedBox(
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.centerLeft,
-                                        end: Alignment.centerRight,
-                                        colors: [
-                                          Colors.black.withOpacity(0.14),
-                                          Colors.transparent,
-                                          Colors.black.withOpacity(0.28),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                _buildDoorLeaf(
-                                  isLeft: true,
-                                  progress: progress,
-                                  doorWidth: doorWidth,
-                                  doorHeight: doorHeight,
-                                  imageCacheWidth: doorImageWidth.clamp(
-                                    720,
-                                    1920,
-                                  ),
-                                ),
-                                _buildDoorLeaf(
-                                  isLeft: false,
-                                  progress: progress,
-                                  doorWidth: doorWidth,
-                                  doorHeight: doorHeight,
-                                  imageCacheWidth: doorImageWidth.clamp(
-                                    720,
-                                    1920,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                      DecoratedBox(
-                        key: const ValueKey('shadow-door-frame'),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(28),
-                          border: Border.all(
-                            color: Colors.white.withOpacity(0.18),
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),

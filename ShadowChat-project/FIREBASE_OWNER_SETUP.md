@@ -1,5 +1,25 @@
 # Firebase owner setup
 
+## Configure the web app
+
+The GitHub Pages build requires the Firebase Web app configuration. In Firebase
+Console, open **Project settings** and register a Web app if the project does
+not already have one. Add these values from its SDK configuration to the
+repository's **Settings > Secrets and variables > Actions > Variables**:
+
+- `FIREBASE_WEB_API_KEY`
+- `FIREBASE_WEB_APP_ID`
+
+Repository Actions secrets with the same names are also supported.
+
+The app ID must be the Web app ID (`1:...:web:...`), not the Android app ID.
+Restrict the API key to the Firebase APIs used by the app and the
+`https://youi552.github.io/*` HTTP referrer.
+
+Also enable **Anonymous** under Firebase Authentication sign-in providers and
+publish `firestore.rules` to the same Firebase project. The app uses anonymous
+authentication and Firestore for groups, privacy settings, and contacts.
+
 The app uses anonymous Firebase Authentication for the current prototype. To make only the owner able to add room or group members:
 
 1. Run the app on Android or Chrome.
