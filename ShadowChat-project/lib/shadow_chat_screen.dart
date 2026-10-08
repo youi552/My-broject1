@@ -355,15 +355,17 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
               ),
               if (_doorOpening)
                 Positioned.fill(
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: _doorVideoController.value.isInitialized
-                        ? SizedBox(
-                            width: _doorVideoController.value.size.width,
-                            height: _doorVideoController.value.size.height,
-                            child: VideoPlayer(_doorVideoController),
-                          )
-                        : const SizedBox.expand(),
+                  child: ClipRect(
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: _doorVideoController.value.isInitialized
+                          ? SizedBox(
+                              width: _doorVideoController.value.size.width,
+                              height: _doorVideoController.value.size.height,
+                              child: VideoPlayer(_doorVideoController),
+                            )
+                          : const SizedBox.expand(),
+                    ),
                   ),
                 ),
               Center(
