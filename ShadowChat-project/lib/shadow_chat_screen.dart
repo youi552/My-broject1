@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui' show ImageFilter;
 
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,7 +23,7 @@ class ShadowChatScreen extends StatefulWidget {
 }
 
 class _ShadowChatScreenState extends State<ShadowChatScreen>
-  with TickerProviderStateMixin {
+    with TickerProviderStateMixin {
   int currentStage = 1;
   double userBraveryScore = 20.0;
   bool _doorOpened = false;
@@ -166,6 +167,15 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
 
   Future<void> _openDoor() async {
     if (_doorOpening) return;
+    await _doorVideoInitialization;
+    if (!mounted) return;
+    if (!_doorVideoController.value.isInitialized) {
+      setState(() {
+        _doorOpened = true;
+        currentStage = 1;
+      });
+      return;
+    }
     setState(() => _doorOpening = true);
     await _playDoorVideo();
     if (!mounted) return;
@@ -356,15 +366,28 @@ class _ShadowChatScreenState extends State<ShadowChatScreen>
               if (_doorOpening)
                 Positioned.fill(
                   child: ClipRect(
-                    child: FittedBox(
-                      fit: BoxFit.cover,
-                      child: _doorVideoController.value.isInitialized
-                          ? SizedBox(
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        ImageFiltered(
+                          imageFilter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                            child: SizedBox(
                               width: _doorVideoController.value.size.width,
                               height: _doorVideoController.value.size.height,
                               child: VideoPlayer(_doorVideoController),
-                            )
-                          : const SizedBox.expand(),
+                            ),
+                          ),
+                        ),
+                        const ColoredBox(color: Color(0x55000000)),
+                        Center(
+                          child: AspectRatio(
+                            aspectRatio: _doorVideoController.value.aspectRatio,
+                            child: VideoPlayer(_doorVideoController),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

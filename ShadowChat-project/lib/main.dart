@@ -480,7 +480,7 @@ void _showUpdateDialog(
     context: context,
     barrierDismissible: !isForced,
     builder: (dialogContext) => AlertDialog(
-      backgroundColor: const Color(0xFF1A1A1A),
+      backgroundColor: Color(0xFF1A1A1A),
       title: const Row(
         children: [
           Icon(Icons.system_update, color: Color(0xFF00FF66), size: 24),
@@ -528,7 +528,7 @@ void _showUpdateDialog(
           ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF00FF66),
+            backgroundColor: Color(0xFF00FF66),
             foregroundColor: Colors.black,
           ),
           onPressed: () async {
@@ -1675,9 +1675,9 @@ class ShadowChatApp extends StatelessWidget {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: ThemeData.light(useMaterial3: true).copyWith(
-                scaffoldBackgroundColor: const Color(0xFFF5F7F8),
+                scaffoldBackgroundColor: Color(0xFFF5F7F8),
                 colorScheme: ColorScheme.fromSeed(
-                  seedColor: const Color(0xFF167A5A),
+                  seedColor: Color(0xFF167A5A),
                   brightness: Brightness.light,
                 ),
                 appBarTheme: const AppBarTheme(
@@ -1737,7 +1737,7 @@ class ShadowChatApp extends StatelessWidget {
                 ),
               ),
               darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
-                scaffoldBackgroundColor: const Color(0xFF0C1217),
+                scaffoldBackgroundColor: Color(0xFF0C1217),
                 textTheme: ThemeData.dark(useMaterial3: true).textTheme.apply(
                   bodyColor: Colors.white,
                   displayColor: Colors.white,
@@ -1746,7 +1746,7 @@ class ShadowChatApp extends StatelessWidget {
                     .primaryTextTheme
                     .apply(bodyColor: Colors.white, displayColor: Colors.white),
                 colorScheme: ColorScheme.fromSeed(
-                  seedColor: const Color(0xFF38E8A5),
+                  seedColor: Color(0xFF38E8A5),
                   brightness: Brightness.dark,
                 ),
                 appBarTheme: const AppBarTheme(
@@ -2075,7 +2075,7 @@ class _AppLockGateState extends State<AppLockGate>
       return const ChatListScreen();
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: const Color(0xFF06110D),
+      backgroundColor: Color(0xFF06110D),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -2115,10 +2115,10 @@ class _AppLockGateState extends State<AppLockGate>
                       constraints: const BoxConstraints(maxWidth: 410),
                       padding: const EdgeInsets.fromLTRB(24, 30, 24, 24),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF0C1B15).withOpacity(0.96),
+                        color: Color(0xFF0C1B15).withOpacity(0.96),
                         borderRadius: BorderRadius.circular(26),
                         border: Border.all(
-                          color: const Color(0xFF3D8062).withOpacity(0.45),
+                          color: Color(0xFF3D8062).withOpacity(0.45),
                         ),
                         boxShadow: const [
                           BoxShadow(
@@ -2137,9 +2137,9 @@ class _AppLockGateState extends State<AppLockGate>
                               padding: const EdgeInsets.all(19),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: const Color(0xFF00FF66).withOpacity(0.1),
+                                color: Color(0xFF00FF66).withOpacity(0.1),
                                 border: Border.all(
-                                  color: const Color(0xFF00FF66),
+                                  color: Color(0xFF00FF66),
                                   width: 1.5,
                                 ),
                               ),
@@ -2215,7 +2215,7 @@ class _AppLockGateState extends State<AppLockGate>
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF00FF66),
+                                backgroundColor: Color(0xFF00FF66),
                                 foregroundColor: Colors.black,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15),
@@ -2410,9 +2410,9 @@ class _ChatListScreenState extends State<ChatListScreen> {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF00FF66).withOpacity(0.1),
+                  color: Color(0xFF00FF66).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: const Color(0xFF00FF66), width: 1),
+                  border: Border.all(color: Color(0xFF00FF66), width: 1),
                 ),
                 child: const Text(
                   '💾 سيتم حفظ بياناتك بأمان في Firebase\nجميع البيانات مشفرة وآمنة 🔐',
@@ -2632,7 +2632,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                     'assets/images/magic_bg.jpg',
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) => Container(
-                      color: const Color(0xFF101716),
+                      color: Color(0xFF101716),
                     ),
                   ),
                 ),
@@ -2806,15 +2806,15 @@ class _ChatListScreenState extends State<ChatListScreen> {
                               child: Container(
                                 margin: const EdgeInsets.symmetric(vertical: 4),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF0E1716).withOpacity(0.9),
+                                  color: Color(0xFF0E1716).withOpacity(0.9),
                                   borderRadius: BorderRadius.circular(16),
                                   border: Border.all(
-                                    color: const Color(0xFF1B2D2A),
+                                    color: Color(0xFF1B2D2A),
                                     width: 1,
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: const Color(0xFF00FF66).withOpacity(0.06),
+                                      color: Color(0xFF00FF66).withOpacity(0.06),
                                       blurRadius: 18,
                                       spreadRadius: 1,
                                     ),
@@ -2827,8 +2827,8 @@ class _ChatListScreenState extends State<ChatListScreen> {
                                   ),
                                   leading: CircleAvatar(
                                     radius: 26,
-                                    backgroundColor: const Color(0xFF0F2724),
-                                    foregroundColor: const Color(0xFFB7FFD8),
+                                    backgroundColor: Color(0xFF0F2724),
+                                    foregroundColor: Color(0xFFB7FFD8),
                                     child: Text(
                                       contactName.toString().isNotEmpty
                                           ? contactName.toString()[0]
@@ -2856,7 +2856,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                                             : lastMessage.toString()),
                                     style: TextStyle(
                                       color: isIncomingRequest
-                                          ? const Color(0xFFB7FFD8)
+                                          ? Color(0xFFB7FFD8)
                                           : Colors.white70,
                                       fontSize: 12,
                                     ),
@@ -2874,10 +2874,10 @@ class _ChatListScreenState extends State<ChatListScreen> {
                                               Container(
                                               height: 32,
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFF00FF66).withOpacity(0.15),
+                                                color: Color(0xFF00FF66).withOpacity(0.15),
                                                 borderRadius: BorderRadius.circular(10),
                                                 border: Border.all(
-                                                  color: const Color(0xFF00FF66).withOpacity(0.35),
+                                                  color: Color(0xFF00FF66).withOpacity(0.35),
                                                   width: 1,
                                                 ),
                                               ),
@@ -2965,7 +2965,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF00FF66).withOpacity(0.6),
+                      color: Color(0xFF00FF66).withOpacity(0.6),
                       blurRadius: 18,
                       spreadRadius: 3,
                     ),
@@ -3263,7 +3263,7 @@ class _SecretGroupsScreenState extends State<SecretGroupsScreen> {
       builder: (dialogContext) => Directionality(
         textDirection: TextDirection.rtl,
         child: AlertDialog(
-          backgroundColor: const Color(0xFF171D26),
+          backgroundColor: Color(0xFF171D26),
           title: Text(actionLabel, style: const TextStyle(color: Colors.white)),
           content: Text(
             isOwner
@@ -3360,7 +3360,7 @@ class _SecretGroupsScreenState extends State<SecretGroupsScreen> {
       builder: (dialogContext) => Directionality(
         textDirection: TextDirection.rtl,
         child: AlertDialog(
-          backgroundColor: const Color(0xFF171D26),
+          backgroundColor: Color(0xFF171D26),
           title: const Text(
             'إنشاء مجموعة جديدة',
             style: TextStyle(color: Colors.white),
@@ -3442,10 +3442,10 @@ class _SecretGroupsScreenState extends State<SecretGroupsScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: const Color(0xFF0D1117),
+        backgroundColor: Color(0xFF0D1117),
         appBar: AppBar(
           title: const Text('مجموعاتي السرية'),
-          backgroundColor: const Color(0xFF111827),
+          backgroundColor: Color(0xFF111827),
           foregroundColor: Colors.white,
           elevation: 0,
           actions: [
@@ -3526,7 +3526,7 @@ class _SecretGroupsScreenState extends State<SecretGroupsScreen> {
                         child: Container(
                           padding: const EdgeInsets.all(24),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF161C2A),
+                            color: Color(0xFF161C2A),
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(color: Colors.white12),
                           ),
@@ -3562,7 +3562,7 @@ class _SecretGroupsScreenState extends State<SecretGroupsScreen> {
                                 child: ElevatedButton.icon(
                                   onPressed: _isPreparingGroups ? null : _createSecretGroup,
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF00FF66),
+                                    backgroundColor: Color(0xFF00FF66),
                                     foregroundColor: Colors.black,
                                     padding: const EdgeInsets.symmetric(vertical: 14),
                                     shape: RoundedRectangleBorder(
@@ -3597,7 +3597,7 @@ class _SecretGroupsScreenState extends State<SecretGroupsScreen> {
 
                       return Container(
                         decoration: BoxDecoration(
-                          color: const Color(0xFF161C2A),
+                          color: Color(0xFF161C2A),
                           borderRadius: BorderRadius.circular(18),
                           border: Border.all(color: Colors.white12),
                           boxShadow: const [
@@ -3701,7 +3701,7 @@ class _AppUsersInfoState extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
       decoration: BoxDecoration(
-        color: const Color(0xFF14231F),
+        color: Color(0xFF14231F),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Column(
@@ -4386,7 +4386,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: const Color(0xFF07110F),
+        backgroundColor: Color(0xFF07110F),
         appBar: AppBar(
           title: Text(
             widget.scope == ContactScope.regular
@@ -4443,10 +4443,10 @@ class _ContactsScreenState extends State<ContactsScreen> {
                           margin: const EdgeInsets.only(bottom: 12),
                           padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
-                            color: const Color(0xFF0F1C1A),
+                            color: Color(0xFF0F1C1A),
                             borderRadius: BorderRadius.circular(18),
                             border: Border.all(
-                              color: const Color(0xFF38E8A5).withOpacity(0.22),
+                              color: Color(0xFF38E8A5).withOpacity(0.22),
                             ),
                           ),
                           child: Column(
@@ -4458,7 +4458,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                     width: 38,
                                     height: 38,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFF38E8A5).withOpacity(0.12),
+                                      color: Color(0xFF38E8A5).withOpacity(0.12),
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: const Icon(
@@ -4573,7 +4573,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                               bottom: 9,
                                             ),
                                             decoration: BoxDecoration(
-                                              color: const Color(0xFF14231F),
+                                              color: Color(0xFF14231F),
                                               borderRadius: BorderRadius.circular(14),
                                               border: Border.all(color: Colors.white10),
                                             ),
@@ -4581,7 +4581,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                               children: [
                                                 CircleAvatar(
                                                   radius: 20,
-                                                  backgroundColor: const Color(0xFF38E8A5).withOpacity(0.14),
+                                                  backgroundColor: Color(0xFF38E8A5).withOpacity(0.14),
                                                   child: Text(
                                                     displayName.trim().isEmpty
                                                         ? '؟'
@@ -4649,8 +4649,8 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                                             : 'إضافة',
                                                   ),
                                                   style: FilledButton.styleFrom(
-                                                    foregroundColor: const Color(0xFF38E8A5),
-                                                    backgroundColor: const Color(0xFF38E8A5).withOpacity(0.12),
+                                                    foregroundColor: Color(0xFF38E8A5),
+                                                    backgroundColor: Color(0xFF38E8A5).withOpacity(0.12),
                                                     padding: const EdgeInsets.symmetric(horizontal: 10),
                                                   ),
                                                 ),
@@ -4705,10 +4705,10 @@ class _ContactsScreenState extends State<ContactsScreen> {
                       margin: const EdgeInsets.only(bottom: 12),
                       padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF101A22),
+                        color: Color(0xFF101A22),
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
-                          color: const Color(0xFF38E8A5).withOpacity(0.55),
+                          color: Color(0xFF38E8A5).withOpacity(0.55),
                         ),
                       ),
                       child: Column(
@@ -4769,7 +4769,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                                     : 'إضافة عضو',
                               ),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF38E8A5),
+                                backgroundColor: Color(0xFF38E8A5),
                                 foregroundColor: Colors.black,
                               ),
                             ),
@@ -4934,7 +4934,7 @@ class _SecretRoomScreenState extends State<SecretRoomScreen>
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: const Color(0xFF07110F),
+        backgroundColor: Color(0xFF07110F),
         appBar: AppBar(
           title: const Text(
             '🔐 الغرفة السرية المحصنة',
@@ -5646,10 +5646,10 @@ class _SecretMembersScreenState extends State<SecretMembersScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: const Color(0xFF0D1117),
+        backgroundColor: Color(0xFF0D1117),
         appBar: AppBar(
           title: Text(widget.title),
-          backgroundColor: const Color(0xFF171D26),
+          backgroundColor: Color(0xFF171D26),
           foregroundColor: Colors.white,
           centerTitle: true,
           actions: [
@@ -5663,7 +5663,7 @@ class _SecretMembersScreenState extends State<SecretMembersScreen> {
                       ? Icons.verified_user
                       : Icons.admin_panel_settings_outlined,
                   color: _ownerVerifiedForRoom
-                      ? const Color(0xFF38E8A5)
+                      ? Color(0xFF38E8A5)
                       : Colors.amberAccent,
                 ),
                 tooltip: _ownerVerifiedForRoom
@@ -5741,9 +5741,9 @@ class _SecretMembersScreenState extends State<SecretMembersScreen> {
                         margin: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF171F29),
+                          color: Color(0xFF171F29),
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFF38E8A5).withOpacity(0.35)),
+                          border: Border.all(color: Color(0xFF38E8A5).withOpacity(0.35)),
                         ),
                         child: Row(
                           children: [
@@ -5762,7 +5762,7 @@ class _SecretMembersScreenState extends State<SecretMembersScreen> {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF38E8A5).withOpacity(0.14),
+                                color: Color(0xFF38E8A5).withOpacity(0.14),
                                 borderRadius: BorderRadius.circular(999),
                               ),
                               child: Text(
@@ -5798,7 +5798,7 @@ class _SecretMembersScreenState extends State<SecretMembersScreen> {
                             return Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF171F29),
+                                color: Color(0xFF171F29),
                                 borderRadius: BorderRadius.circular(18),
                                 border: Border.all(color: Colors.white10),
                               ),
@@ -6084,7 +6084,7 @@ class _SecretChatScreenState extends State<SecretChatScreen>
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: const Color(0xFF171D26),
+        backgroundColor: Color(0xFF171D26),
         title: const Text(
           'تأكيد الخروج',
           style: TextStyle(color: Colors.amberAccent),
@@ -6569,7 +6569,7 @@ class _SecretChatScreenState extends State<SecretChatScreen>
   Future<void> _showSecretMessageActions(Map<String, dynamic> message) async {
     final deleteMode = await showModalBottomSheet<String>(
       context: context,
-      backgroundColor: const Color(0xFF18231F),
+      backgroundColor: Color(0xFF18231F),
       builder: (sheetContext) => SafeArea(
         child: Wrap(
           children: [
@@ -6651,7 +6651,7 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                   .where((contact) => contact.data()['roomId'] == _roomId)
                   .toList();
               return AlertDialog(
-                backgroundColor: const Color(0xFF101B18),
+                backgroundColor: Color(0xFF101B18),
                 title: const Text(
                   'إضافة جهة اتصال للمجموعة',
                   style: TextStyle(color: Colors.white),
@@ -6775,7 +6775,7 @@ class _SecretChatScreenState extends State<SecretChatScreen>
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: const Color(0xFF0A0A0A),
+        backgroundColor: Color(0xFF0A0A0A),
         appBar: AppBar(
           centerTitle: true, // جعل العنوان في المنتصف
           title: Row(
@@ -6796,7 +6796,7 @@ class _SecretChatScreenState extends State<SecretChatScreen>
               const Icon(Icons.lock_rounded, color: Colors.amberAccent, size: 18),
             ],
           ),
-          backgroundColor: const Color(0xFF121212),
+          backgroundColor: Color(0xFF121212),
           elevation: 2,
           iconTheme: const IconThemeData(color: Colors.amberAccent),
         ),
@@ -6864,7 +6864,7 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                       hintText: 'أدخل مفتاح التشفير',
                       hintStyle: const TextStyle(color: Colors.white60),
                       filled: true,
-                      fillColor: const Color(0xFF141414),
+                      fillColor: Color(0xFF141414),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide.none,
@@ -6942,7 +6942,7 @@ class _SecretChatScreenState extends State<SecretChatScreen>
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: const Color(0xFF0D1117),
+        backgroundColor: Color(0xFF0D1117),
         appBar: AppBar(
           centerTitle: true,
           title: Row(
@@ -6967,11 +6967,11 @@ class _SecretChatScreenState extends State<SecretChatScreen>
               ),
             ],
           ),
-          backgroundColor: const Color(0xFF171D26),
+          backgroundColor: Color(0xFF171D26),
           elevation: 0,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(1),
-            child: Container(height: 1, color: const Color(0xFF3A4655)),
+            child: Container(height: 1, color: Color(0xFF3A4655)),
           ),
           iconTheme: const IconThemeData(color: Color(0xFF38E8A5)),
           actions: [
@@ -7036,10 +7036,10 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                   vertical: 10,
                 ),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF1A2930),
+                  color: Color(0xFF1A2930),
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(
-                    color: const Color(0xFF61E7C0).withOpacity(0.45),
+                    color: Color(0xFF61E7C0).withOpacity(0.45),
                   ),
                 ),
                 child: Row(
@@ -7129,13 +7129,13 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
                               color: isMe
-                                  ? const Color(0xFF176B59)
-                                  : const Color(0xFF202733),
+                                  ? Color(0xFF176B59)
+                                  : Color(0xFF202733),
                               borderRadius: BorderRadius.circular(16),
                               border: Border.all(
                                 color: isMe
-                                    ? const Color(0xFF38E8A5).withOpacity(0.7)
-                                    : const Color(0xFF718096).withOpacity(0.45),
+                                    ? Color(0xFF38E8A5).withOpacity(0.7)
+                                    : Color(0xFF718096).withOpacity(0.45),
                               ),
                             ),
                             child: Row(
@@ -7186,8 +7186,8 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                             padding: const EdgeInsets.fromLTRB(14, 10, 12, 8),
                             decoration: BoxDecoration(
                               color: isMe
-                                  ? const Color(0xFF176B59)
-                                  : const Color(0xFF202733),
+                                  ? Color(0xFF176B59)
+                                  : Color(0xFF202733),
                               borderRadius: BorderRadius.only(
                                 topLeft: const Radius.circular(18),
                                 topRight: const Radius.circular(18),
@@ -7196,8 +7196,8 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                               ),
                               border: Border.all(
                                 color: isMe
-                                    ? const Color(0xFF38E8A5).withOpacity(0.7)
-                                    : const Color(0xFF718096).withOpacity(0.45),
+                                    ? Color(0xFF38E8A5).withOpacity(0.7)
+                                    : Color(0xFF718096).withOpacity(0.45),
                               ),
                               boxShadow: const [
                                 BoxShadow(
@@ -7218,8 +7218,8 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                                           ? Icons.account_circle
                                           : Icons.shield_rounded,
                                       color: isMe
-                                          ? const Color(0xFF8FFFD0)
-                                          : const Color(0xFFFFD76A),
+                                          ? Color(0xFF8FFFD0)
+                                          : Color(0xFFFFD76A),
                                       size: 15,
                                     ),
                                     const SizedBox(width: 5),
@@ -7227,8 +7227,8 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                                       msg["sender"]!,
                                       style: TextStyle(
                                         color: isMe
-                                            ? const Color(0xFF8FFFD0)
-                                            : const Color(0xFFFFD76A),
+                                            ? Color(0xFF8FFFD0)
+                                            : Color(0xFFFFD76A),
                                         fontSize: 11,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -7285,10 +7285,10 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                 margin: const EdgeInsets.fromLTRB(10, 4, 10, 12),
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF18231F).withOpacity(0.98),
+                  color: Color(0xFF18231F).withOpacity(0.98),
                   borderRadius: BorderRadius.circular(22),
                   border: Border.all(
-                    color: const Color(0xFF38E8A5).withOpacity(0.45),
+                    color: Color(0xFF38E8A5).withOpacity(0.45),
                   ),
                   boxShadow: const [
                     BoxShadow(
@@ -7318,7 +7318,7 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                           ),
                           hintText: 'اكتب رسالتك السرية',
                           hintStyle: TextStyle(
-                            color: const Color(0xFFEAF4F0).withOpacity(0.9),
+                            color: Color(0xFFEAF4F0).withOpacity(0.9),
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
                           ),
@@ -7336,7 +7336,7 @@ class _SecretChatScreenState extends State<SecretChatScreen>
                             : Icons.mic_none_rounded,
                         color: _isSecretRecording
                             ? Colors.redAccent
-                            : const Color(0xFF38E8A5),
+                            : Color(0xFF38E8A5),
                       ),
                       tooltip: _isSecretRecording ? 'إيقاف التسجيل' : 'تسجيل رسالة صوتية',
                       onPressed: _toggleSecretVoiceRecording,
@@ -7382,7 +7382,7 @@ class SettingsScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          backgroundColor: isDark ? const Color(0xFF0B1D19) : Colors.white,
+          backgroundColor: isDark ? Color(0xFF0B1D19) : Colors.white,
           foregroundColor: isDark ? Colors.white : Colors.black,
           iconTheme: IconThemeData(color: isDark ? Colors.white : Colors.black),
           centerTitle: true,
@@ -7443,7 +7443,7 @@ class SettingsScreen extends StatelessWidget {
             ListTile(
               leading: Icon(
                 Icons.folder_special,
-                color: isDark ? const Color(0xFF00FF66) : Colors.black,
+                color: isDark ? Color(0xFF00FF66) : Colors.black,
               ),
               title: Text(
                 'الإعدادات المتغيرة',
@@ -7509,7 +7509,7 @@ class SettingsScreen extends StatelessWidget {
             ListTile(
               leading: Icon(
                 Icons.account_circle,
-                color: isDark ? const Color(0xFF38E8A5) : Colors.black,
+                color: isDark ? Color(0xFF38E8A5) : Colors.black,
               ),
               title: Text(
                 'الحساب والمظهر',
@@ -7659,7 +7659,7 @@ class DynamicSettingsScreen extends StatelessWidget {
                     ),
                   ),
                   value: isMoving,
-                  activeColor: isDark ? const Color(0xFF00FF66) : Colors.black,
+                  activeColor: isDark ? Color(0xFF00FF66) : Colors.black,
                   onChanged: (bool value) {
                     whaleMotionNotifier.value = value;
                   },
@@ -7690,7 +7690,7 @@ class DynamicSettingsScreen extends StatelessWidget {
                     ),
                   ),
                   value: isSoundEnabled,
-                  activeColor: isDark ? const Color(0xFF00FF66) : Colors.black,
+                  activeColor: isDark ? Color(0xFF00FF66) : Colors.black,
                   onChanged: (bool value) {
                     whaleSoundNotifier.value = value;
                   },
@@ -7705,7 +7705,7 @@ class DynamicSettingsScreen extends StatelessWidget {
                   secondary: Icon(
                     Icons.security,
                     color: Theme.of(context).brightness == Brightness.dark
-                        ? const Color(0xFF00FF66)
+                        ? Color(0xFF00FF66)
                         : Colors.black,
                   ),
                   title: Text(
@@ -7721,7 +7721,7 @@ class DynamicSettingsScreen extends StatelessWidget {
                     ),
                   ),
                   value: isAutoEncryptEnabled,
-                  activeColor: isDark ? const Color(0xFF00FF66) : Colors.black,
+                  activeColor: isDark ? Color(0xFF00FF66) : Colors.black,
                   onChanged: (bool value) {
                     autoEncryptNotifier.value = value;
                   },
@@ -7795,7 +7795,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
               SizedBox(width: 8),
               Icon(
                 Icons.lock,
-                color: isDark ? const Color(0xFF00FF66) : Colors.black,
+                color: isDark ? Color(0xFF00FF66) : Colors.black,
                 size: 20,
               ),
             ],
@@ -7809,7 +7809,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
             Text(
               'حماية التطبيق',
               style: TextStyle(
-                color: isDark ? const Color(0xFF00FF66) : Colors.black,
+                color: isDark ? Color(0xFF00FF66) : Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
@@ -7819,7 +7819,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
               secondary: Icon(
                 Icons.fingerprint,
                 color: Theme.of(context).brightness == Brightness.dark
-                    ? const Color(0xFF63F5C2)
+                    ? Color(0xFF63F5C2)
                     : Colors.black,
               ),
               title: Text(
@@ -7835,7 +7835,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                 ),
               ),
               value: _appLockEnabled,
-              activeColor: isDark ? const Color(0xFF00FF66) : Colors.black,
+              activeColor: isDark ? Color(0xFF00FF66) : Colors.black,
               onChanged: (bool value) async {
                 if (value) {
                   _setAppLockPassword();
@@ -7885,7 +7885,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
             Text(
               'خصوصية المحادثات',
               style: TextStyle(
-                color: isDark ? const Color(0xFF00FF66) : Colors.black,
+                color: isDark ? Color(0xFF00FF66) : Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),
@@ -7914,7 +7914,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                     ),
                   ),
                   value: isGhostModeEnabled,
-                  activeColor: isDark ? const Color(0xFF00FF66) : Colors.black,
+                  activeColor: isDark ? Color(0xFF00FF66) : Colors.black,
                   onChanged: (bool value) {
                     ghostModeNotifier.value = value;
                     savePrivacySetting('ghostMode', value);
@@ -7943,7 +7943,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                 ),
               ),
               value: autoDeleteMessagesNotifier.value,
-              activeColor: isDark ? const Color(0xFF00FF66) : Colors.black,
+              activeColor: isDark ? Color(0xFF00FF66) : Colors.black,
               onChanged: (bool value) {
                 autoDeleteMessagesNotifier.value = value;
                 savePrivacySetting('autoDeleteMessages', value);
@@ -8257,7 +8257,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   ),
                 ),
                 value: isSoundEnabled,
-                activeColor: isDark ? const Color(0xFF38E8A5) : Colors.black,
+                activeColor: isDark ? Color(0xFF38E8A5) : Colors.black,
                 onChanged: (value) {
                   messageSoundNotifier.value = value;
                   unawaited(savePrivacySetting('messageSound', value));
@@ -8300,12 +8300,12 @@ class AboutAppScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: isDark ? const Color(0xFF00FF66) : Colors.black,
+                    color: isDark ? Color(0xFF00FF66) : Colors.black,
                     width: 2,
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF00FF66).withOpacity(0.4),
+                      color: Color(0xFF00FF66).withOpacity(0.4),
                       blurRadius: 20,
                       spreadRadius: 5,
                     ),
@@ -8314,7 +8314,7 @@ class AboutAppScreen extends StatelessWidget {
                 child: Icon(
                   Icons.code,
                   size: 50,
-                  color: const Color(0xFF00FF66),
+                  color: Color(0xFF00FF66),
                 ),
               ),
               const SizedBox(height: 20),
@@ -8374,10 +8374,10 @@ class AboutAppScreen extends StatelessWidget {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF00FF66).withOpacity(0.15),
+                  color: Color(0xFF00FF66).withOpacity(0.15),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: const Color(0xFF00FF66).withOpacity(0.5),
+                    color: Color(0xFF00FF66).withOpacity(0.5),
                   ),
                 ),
                 child: const Text(
@@ -9745,7 +9745,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   void _showMediaPicker() {
     showModalBottomSheet<void>(
       context: context,
-      backgroundColor: const Color(0xFF101714),
+      backgroundColor: Color(0xFF101714),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -9759,7 +9759,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                 _MediaOption(
                   icon: Icons.photo_library_rounded,
                   label: 'صورة',
-                  color: const Color(0xFF00FF66),
+                  color: Color(0xFF00FF66),
                   onTap: () {
                     Navigator.pop(sheetContext);
                     _pickMedia(video: false);
@@ -9884,7 +9884,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   Future<void> _showMessageActions(Message message) async {
     final deleteMode = await showModalBottomSheet<String>(
       context: context,
-      backgroundColor: const Color(0xFF101714),
+      backgroundColor: Color(0xFF101714),
       builder: (sheetContext) => SafeArea(
         child: Wrap(
           children: [
@@ -10231,13 +10231,13 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: message.isMe
-                  ? const Color(0xFF9AF7D0).withOpacity(0.8)
-                  : const Color(0xFF7DE5A8).withOpacity(0.5),
+                  ? Color(0xFF9AF7D0).withOpacity(0.8)
+                  : Color(0xFF7DE5A8).withOpacity(0.5),
               width: 1,
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF00FF66).withOpacity(0.18),
+                color: Color(0xFF00FF66).withOpacity(0.18),
                 blurRadius: 12,
                 offset: const Offset(0, 3),
               ),
@@ -10293,7 +10293,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       textAlign: TextAlign.start,
       softWrap: true,
       style: TextStyle(
-        color: message.isMe ? Colors.white : const Color(0xFFE8FFF4),
+        color: message.isMe ? Colors.white : Color(0xFFE8FFF4),
         fontSize: 15,
         height: 1.45,
         fontWeight: FontWeight.w500,
@@ -10301,7 +10301,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
             ? null
             : [
                 Shadow(
-                  color: const Color(0xFF00FF66).withOpacity(0.28),
+                  color: Color(0xFF00FF66).withOpacity(0.28),
                   blurRadius: 5,
                 ),
               ],
@@ -10313,8 +10313,8 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     final sentColor = const Color(0xFF176B59);
     final receivedColor = const Color(0xFF1C2728);
     final borderColor = message.isMe
-        ? const Color(0xFF38E8A5).withOpacity(0.65)
-        : const Color(0xFF8BA99A).withOpacity(0.35);
+        ? Color(0xFF38E8A5).withOpacity(0.65)
+        : Color(0xFF8BA99A).withOpacity(0.35);
     return Align(
       alignment: message.isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: ConstrainedBox(
@@ -10356,7 +10356,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                     message.time ?? _messageTime(null),
                     style: TextStyle(
                       color: message.isMe
-                          ? const Color(0xFFB5E7D2)
+                          ? Color(0xFFB5E7D2)
                           : Colors.white54,
                       fontSize: 10,
                     ),
@@ -10407,8 +10407,8 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
         textDirection: TextDirection.rtl,
         child: Scaffold(
           backgroundColor: isDark
-              ? const Color(0xFF101716)
-              : const Color(0xFFF4F7F6),
+              ? Color(0xFF101716)
+              : Color(0xFFF4F7F6),
           body: Stack(
             children: [
               if (isDark)
@@ -10422,7 +10422,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                         fit: BoxFit.cover,
                         cacheWidth: 896,
                         errorBuilder: (context, error, stackTrace) =>
-                            Container(color: const Color(0xFF101716)),
+                            Container(color: Color(0xFF101716)),
                       ),
                       builder: (context, child) {
                         return Positioned.fill(
@@ -10479,7 +10479,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                                           style: TextStyle(
                                             color: isDark
                                                 ? Colors.white
-                                                : const Color(0xFF14211D),
+                                                : Color(0xFF14211D),
                                             fontWeight: FontWeight.bold,
                                             fontSize: 16,
                                             letterSpacing: 1.2,
@@ -10490,7 +10490,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                                             _presenceText(data),
                                             style: TextStyle(
                                               color: data?['isOnline'] == true
-                                                  ? const Color(0xFF00FF66)
+                                                  ? Color(0xFF00FF66)
                                                   : Colors.white60,
                                               fontSize: 11,
                                             ),
@@ -10525,10 +10525,10 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                         vertical: 10,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF1B2A25).withOpacity(0.9),
+                        color: Color(0xFF1B2A25).withOpacity(0.9),
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(
-                          color: const Color(0xFF38E8A5).withOpacity(0.35),
+                          color: Color(0xFF38E8A5).withOpacity(0.35),
                         ),
                       ),
                       child: const Text(
@@ -10562,10 +10562,10 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF15221F).withOpacity(0.96),
+                        color: Color(0xFF15221F).withOpacity(0.96),
                         borderRadius: BorderRadius.circular(22),
                         border: Border.all(
-                          color: const Color(0xFF38E8A5).withOpacity(0.45),
+                          color: Color(0xFF38E8A5).withOpacity(0.45),
                         ),
                         boxShadow: [
                           BoxShadow(
@@ -10582,7 +10582,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                           height: 48,
                           child: _FloatingChatButton(
                             icon: Icons.send_rounded,
-                            color: const Color(0xFF00FF66),
+                            color: Color(0xFF00FF66),
                             tooltip: 'إرسال',
                             onPressed: _sendMessage,
                           ),
@@ -10614,14 +10614,14 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                             textInputAction: TextInputAction.newline,
                             decoration: InputDecoration(
                               filled: true,
-                              fillColor: const Color(0xFF11201E),
+                              fillColor: Color(0xFF11201E),
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 10,
                                 vertical: 11,
                               ),
                               hintText: 'اكتب رسالتك هنا',
                               hintStyle: TextStyle(
-                                color: const Color(0xFFEAF4F0).withOpacity(0.9),
+                                color: Color(0xFFEAF4F0).withOpacity(0.9),
                                 fontSize: 15,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -10661,14 +10661,14 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: const Color(0xFF0B1220),
+        backgroundColor: Color(0xFF0B1220),
         appBar: AppBar(
           title: const Text(
             'دردشة محمية',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
-          backgroundColor: const Color(0xFF17243A),
+          backgroundColor: Color(0xFF17243A),
           iconTheme: const IconThemeData(color: Color(0xFF7DE7FF)),
         ),
         body: Stack(
@@ -10695,14 +10695,14 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                   constraints: const BoxConstraints(maxWidth: 410),
                   padding: const EdgeInsets.fromLTRB(24, 30, 24, 24),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF152235).withOpacity(0.98),
+                    color: Color(0xFF152235).withOpacity(0.98),
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(
-                      color: const Color(0xFF7DE7FF).withOpacity(0.45),
+                      color: Color(0xFF7DE7FF).withOpacity(0.45),
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color(0xFF4CC9F0).withOpacity(0.16),
+                        color: Color(0xFF4CC9F0).withOpacity(0.16),
                         blurRadius: 28,
                         spreadRadius: 2,
                       ),
@@ -10717,9 +10717,9 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                           padding: const EdgeInsets.all(18),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: const Color(0xFF00FF66).withOpacity(0.1),
+                            color: Color(0xFF00FF66).withOpacity(0.1),
                             border: Border.all(
-                              color: const Color(0xFF00FF66),
+                              color: Color(0xFF00FF66),
                               width: 1.5,
                             ),
                           ),
@@ -10800,7 +10800,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF00FF66),
+                            backgroundColor: Color(0xFF00FF66),
                             foregroundColor: Colors.black,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(14),
@@ -10825,7 +10825,7 @@ class _ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
                             icon: const Icon(Icons.lock_open_rounded, size: 18),
                             label: const Text('إيقاف كلمة السر'),
                             style: TextButton.styleFrom(
-                              foregroundColor: const Color(0xFF61E7C0),
+                              foregroundColor: Color(0xFF61E7C0),
                             ),
                           ),
                         ],
@@ -11030,7 +11030,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                         width: 220,
                         height: 220,
                         decoration: BoxDecoration(
-                          color: const Color(0xFF101716),
+                          color: Color(0xFF101716),
                           borderRadius: BorderRadius.circular(22),
                         ),
                         child: const Icon(
@@ -11196,7 +11196,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
           valueListenable: globalDarkModeNotifier,
           builder: (context, isDark, child) {
             return AlertDialog(
-              backgroundColor: isDark ? const Color(0xFF1A1A1A) : Colors.white,
+              backgroundColor: isDark ? Color(0xFF1A1A1A) : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18),
                 side: const BorderSide(color: Color(0xFF00FF66), width: 1.5),
@@ -11212,7 +11212,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                 ],
               ),
               titleTextStyle: TextStyle(
-                color: isDark ? const Color(0xFF00FF66) : Colors.black,
+                color: isDark ? Color(0xFF00FF66) : Colors.black,
               ),
               content: TextField(
                 controller: nameController,
@@ -11243,7 +11243,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF00FF66),
+                    backgroundColor: Color(0xFF00FF66),
                     foregroundColor: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -11288,7 +11288,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                   Icon(
                     Icons.account_circle,
                     size: 20,
-                    color: isDark ? const Color(0xFF38E8A5) : Colors.black,
+                    color: isDark ? Color(0xFF38E8A5) : Colors.black,
                   ),
                   SizedBox(width: 10),
                   Text(
@@ -11298,8 +11298,8 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                 ],
               ),
               backgroundColor: isDark
-                  ? const Color(0xFF1A1A1A)
-                  : const Color(0xFFE2E7EC),
+                  ? Color(0xFF1A1A1A)
+                  : Color(0xFFE2E7EC),
               foregroundColor: isDark ? Colors.white : Colors.black,
               elevation: 0,
             ),
@@ -11341,7 +11341,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                                       CircleAvatar(
                                         radius: 62,
                                         backgroundColor: isDark
-                                            ? const Color(0xFF00FF66)
+                                            ? Color(0xFF00FF66)
                                             : Colors.black,
                                         child: CircleAvatar(
                                           radius: 56,
@@ -11370,7 +11370,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                                                         Icons.person,
                                                         size: 65,
                                                         color: isDark
-                                                            ? const Color(
+                                                            ? Color(
                                                                 0xFF00FF66,
                                                               )
                                                             : Colors.black54,
@@ -11382,7 +11382,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                                                   Icons.person,
                                                   size: 65,
                                                   color: isDark
-                                                      ? const Color(0xFF00FF66)
+                                                      ? Color(0xFF00FF66)
                                                       : Colors.black54,
                                                 ),
                                         ),
@@ -11397,7 +11397,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                           left: 0,
                           child: Material(
                             color: isDark
-                                ? const Color(0xFF00FF66)
+                                ? Color(0xFF00FF66)
                                 : Colors.black,
                             shape: const CircleBorder(),
                             child: IconButton(
@@ -11431,14 +11431,14 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                       Icon(
                         Icons.palette_outlined,
                         size: 18,
-                        color: isDark ? const Color(0xFF38E8A5) : Colors.black,
+                        color: isDark ? Color(0xFF38E8A5) : Colors.black,
                       ),
                       SizedBox(width: 8),
                       Text(
                         "إعدادات الحساب والمظهر",
                         style: TextStyle(
                           color: isDark
-                              ? const Color(0xFF00FF66)
+                              ? Color(0xFF00FF66)
                               : Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -11448,7 +11448,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                   ),
                   const SizedBox(height: 12),
                   Card(
-                    color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
+                    color: isDark ? Color(0xFF1E1E1E) : Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -11459,7 +11459,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                           leading: Icon(
                             Icons.add_a_photo_rounded,
                             color: isDark
-                                ? const Color(0xFF00FF66)
+                                ? Color(0xFF00FF66)
                                 : Colors.black,
                           ),
                           title: Text(
@@ -11493,7 +11493,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                           leading: Icon(
                             Icons.edit_rounded,
                             color: isDark
-                                ? const Color(0xFF00FF66)
+                                ? Color(0xFF00FF66)
                                 : Colors.black,
                           ),
                           title: Text(
@@ -11520,7 +11520,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                           leading: Icon(
                             Icons.phone_android_rounded,
                             color: isDark
-                                ? const Color(0xFF38E8A5)
+                                ? Color(0xFF38E8A5)
                                 : Colors.black,
                           ),
                           title: Text(
@@ -11552,7 +11552,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                                   size: 18,
                                   color: _linkedPhoneNumber == null
                                       ? Colors.grey
-                                      : const Color(0xFF38E8A5),
+                                      : Color(0xFF38E8A5),
                                 ),
                           onTap: _isLinkingPhone || _linkedPhoneNumber != null
                               ? null
@@ -11570,7 +11570,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                                 ? Icons.dark_mode_rounded
                                 : Icons.light_mode_rounded,
                             color: isDark
-                                ? const Color(0xFF00FF66)
+                                ? Color(0xFF00FF66)
                                 : Colors.black,
                           ),
                           title: Text(
@@ -11591,7 +11591,7 @@ class _AccountAndThemeScreenState extends State<AccountAndThemeScreen> {
                           ),
                           value: isDark,
                           activeColor: isDark
-                              ? const Color(0xFF00FF66)
+                              ? Color(0xFF00FF66)
                               : Colors.black,
                           onChanged: (bool value) {
                             saveDarkModeSetting(value);
